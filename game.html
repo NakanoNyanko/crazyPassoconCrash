@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="cn">
+<head>
+    <meta charset="UTF-8">
+    <title>クレイジーパソコンクラッシュ</title>
+    <audio id="tataku_oto" src="images/punch-stop1.mp3"></audio>
+    <style>
+        body{
+            background-image: url(images/bg.jpg);
+            background-repeat: no-repeat;
+            background-repeat: repeat-x;
+        }
+        #headerbig{
+            display: grid;
+            grid-template-columns: 1fr 5fr;
+        }
+        #headerbig img[src^="images/l"]{
+            height: 200px;
+        }
+        #supersuperbig{
+            width:600px;
+            height:400px;
+            background-color: bisque;
+            text-align:center;
+        }
+        #superbig1{
+            width:500px;
+            height:300px;
+            background-color: darkslategrey;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        #superbig1 div{
+            color: rgb(241, 241, 241);
+            padding-top: 10px;
+        }
+        #superbig2 div{
+            font-size: 2em;
+            color: rgb(236, 0, 39);
+            background: white;
+            margin: 5px 0 auto 0;
+        }
+        #pasokon{
+            width:260px;
+            height: 260px;
+            
+        }
+        #pasokonHp::before{
+            content: "パソコンのHP : ";
+        }
+
+        /**** ここから ****/
+        /**** ここまで ****/
+    </style>
+</head>
+<body>
+    <header>
+        <div id="headerbig">
+            <a href="#"><img src="images/logo.png"></a>
+            <p>ゲーム</p><p>クレイジーパソコンクラッシュ</p>
+        </div>
+    </header>
+    <div id="supersuperbig">
+        <div id="pasokonHp">999</div>
+        <div id="superbig1">
+            <div>↓▼ 敵（パソコン）</div>
+            <img src="images/p1.png" alt="パソコン" id="pasokon">
+        </div>
+        <div id="superbig2">
+            <div id="cdtMoji">▲クリックでたたく！▲</div>
+        </div>
+        <div id="superdownload">
+            <div><a id="pasokon_down" href="images/p1.png" download>※ 画像ダウンロードはこちら(PNG)</a></div>
+        </div>
+    </div>
+    <script>
+        let pasokonHp = 333;
+        let pasokonHealthMode = 0;
+        function tataitana () {
+            document.getElementById('tataku_oto').currentTime = 0;
+            document.getElementById('tataku_oto').play();
+            if (pasokonHp == 0){ pasokonHp = "死んでるです";}
+            if(pasokonHp > 0) document.getElementById('pasokonHp').textContent = --pasokonHp;
+            if (pasokonHp == 300){pasokonHealthMode = 1; document.getElementById('pasokon').src = "images/p2.png"; console.log('入った');}
+            if (pasokonHp == 150){pasokonHealthMode = 2; document.getElementById('pasokon').src = "images/p3.png"; console.log('入った');}
+            if (pasokonHp == 0){pasokonHealthMode = 3; document.getElementById('pasokon').src = "images/p4.png"; console.log('入った');}
+
+        }
+        document.getElementById('pasokon').addEventListener('click', () =>{
+            tataitana();
+        });
+        document.getElementById('pasokonHp').textContent = pasokonHp;
+        switch(pasokonHealthMode){
+            case 0:
+                document.getElementById('pasokon_down').setAttribute('href', "images/p1.png");
+                break;
+            case 1:
+                break;
+                document.getElementById('pasokon_down').setAttribute('href', "images/p2.png");
+                case 2:
+                break;
+                document.getElementById('pasokon_down').setAttribute('href', "images/p3.png");
+                case 3:
+                break;
+                document.getElementById('pasokon_down').setAttribute('href', "images/p4.png");
+        }
+        if (pasokonHp == 0){document.getElementById('pasokonHp').textContent = "▲MISSON COMPLETE▲"}
+        /**** ここから ****/
+        /**** ここまで ****/
+    </script>
+</body>
+</html>
